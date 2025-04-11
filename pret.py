@@ -21,7 +21,7 @@ eval_dir = f"evaluation_results_{timestamp}"
 os.makedirs(eval_dir, exist_ok=True)
 
 # 加载标签编码器和模型
-with open("./label_encoders.pkl", "rb") as f:  # 替换为你的训练日志目录
+with open("./training_logs_20250408_070021/label_encoders.pkl", "rb") as f:  # 替换为你的训练日志目录
     label_encoders = pickle.load(f)
 
 # 定义设备
@@ -44,7 +44,7 @@ def extract_features(inputs):
     return outputs.pooler_output, outputs.last_hidden_state
 
 # 加载测试数据
-test_data_path = "E:/down/human/alldata/reviewed_human.tsv"  # 替换为你的测试数据路径
+test_data_path = "./test_data.tsv"  # 替换为你的测试数据路径
 test_data = pd.read_csv(test_data_path, sep="\t")
 
 # 提取 EC number 列中的第一个 EC 编号并分割为四层
@@ -310,7 +310,7 @@ def load_model(model_path):
     return model
 
 # 加载你的最佳模型
-model_path = "./training_logs_20250328_200554/best_hierarchical_transformer_ec_classifier.pt"  # 替换为你的模型路径
+model_path = "./training_logs_20250408_070021/best_hierarchical_transformer_ec_classifier.pt"  # 替换为你的模型路径
 model = load_model(model_path)
  
 # 测试集评估函数
