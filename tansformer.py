@@ -40,7 +40,7 @@ batch_metrics = {
 }
 
 # 加载数据
-data_path = "E:/down/human//e-munber/200bp/200bp.tsv"
+data_path = "./train_data.tsv"
 data = pd.read_csv(data_path, sep="\t")
 
 # 提取 EC number 列中的第一个 EC 编号并分割为四层
@@ -56,6 +56,11 @@ tokenizer = BertTokenizer.from_pretrained("Rostlab/prot_bert", do_lower_case=Fal
 bert_model = BertModel.from_pretrained("Rostlab/prot_bert")
 bert_model.to(device)
 bert_model.eval()
+
+# 明确冻结ProtBERT模型的所有参数
+for param in bert_model.parameters():
+    param.requires_grad = False
+
 
 # 创建自定义数据集类
 class ProteinDataset(torch.utils.data.Dataset):
@@ -98,7 +103,7 @@ train_size = int(0.8 * len(dataset))
 val_size = len(dataset) - train_size
 train_dataset, val_dataset = random_split(dataset, [train_size, val_size])
 
-batch_size = 16  # 根据GPU内存调整
+batch_size = 64  # 根据GPU内存调整
 train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, collate_fn=ProteinDataset.collate_fn)
 val_loader = DataLoader(val_dataset, batch_size=batch_size, collate_fn=ProteinDataset.collate_fn)
 
