@@ -12,6 +12,7 @@
 - Python 3.8+
 - PyTorch 1.12+ (需匹配CUDA版本)
 - HuggingFace Transformers 4.28+
+- 如需直接使用这里提供的权重文件（best_hierarchical_transformer_ec_classifier.pt）和训练日志文件（label_encoders.pkl），其原始环境基于，ubuntu22.04,cuda12.1,pytorch2.5.0,python3.12
 
 ### 步骤
 1. 克隆仓库：
