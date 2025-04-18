@@ -19,5 +19,7 @@
    ```bash
    git clone https://github.com/ooszm/EC-number.git
    cd EC-model
+   
 2.优先创建虚拟环境，下载对应的模块。
+
 3.可以直接运行transformer文件得到基于本地环境的权重与训练日志，亦或使用这里提供的，然后pret是对整个未知序列文件的全体预测，pret2.py则是通过交互方式得到单个序列信息的预测结果。
